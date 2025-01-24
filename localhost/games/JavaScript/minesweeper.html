@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сапёр</title>
+  <link rel="stylesheet" href="minesweeper.css">
+</head>
+<body>
+  <header class="main-header">
+    <h1>Сапёр</h1>
+    <nav>
+      <a href="index.html" class="nav-link">Главная</a>
+      <a href="#" class="nav-link active">Сапёр</a>
+    </nav>
+  </header>
+  <main class="game-container">
+    <div id="game-board"></div>
+    <div id="controls">
+      <h2>Настройки игры</h2>
+      <label for="difficulty">Уровень сложности:</label>
+      <select id="difficulty">
+        <option value="easy">Лёгкий (8x8)</option>
+        <option value="medium">Средний (12x12)</option>
+        <option value="hard">Сложный (16x16)</option>
+      </select>
+      <button id="restart">Начать игру</button>
+    </div>
+    <div id="win-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-win-modal" class="close">&times;</span>
+        <h2>Поздравляем! Вы выиграли!</h2>
+        <button onclick="createBoard()">Играть заново</button>
+      </div>
+    </div>
+    
+    <div id="lose-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-lose-modal" class="close">&times;</span>
+        <h2>Вы проиграли! Попробуйте снова.</h2>
+        <button onclick="createBoard()">Играть заново</button>
+      </div>
+    </div>
+    
+  </main>
+  <footer class="main-footer">
+    <p>© 2025 Все права защищены. Разработано вами.</p>
+  </footer>
+  <script src="minesweeper.js" defer></script>
+</body>
+</html>
