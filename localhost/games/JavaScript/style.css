@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  header {
+    background-color: #6200ea;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  main h2 {
+    color: #6200ea;
+  }
+  
+  .games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .game {
+    width: 200px;
+    text-align: center;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .game:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .game img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    height: 120px;
+    object-fit: cover;
+  }
+  
+  .game p {
+    margin: 10px 0;
+    font-size: 1em;
+    color: #6200ea;
+  }
+  
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+  }
+  #controls {
+    margin: 10px;
+  }
+  
+  #difficulty {
+    padding: 5px;
+    font-size: 1rem;
+    margin-left: 10px;
+  }
+  
+  button {
+    margin-left: 10px;
+  }
