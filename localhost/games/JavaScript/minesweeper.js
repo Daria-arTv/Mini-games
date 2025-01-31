@@ -66,9 +66,9 @@ function revealCell(row, col) {
   if (board[row][col].mine) {
     cell.innerHTML = "💣";
     cell.style.backgroundColor = "red";
-    gameOver = true; // устанавливаем флаг о завершении игры
+    gameOver = true;
     alert("Вы проиграли! Нажмите 'Играть заново' для новой игры.");
-    revealAllMines(); // раскрываем бомбы
+    revealAllMines();
     return;
   }
 
