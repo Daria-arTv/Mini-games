@@ -137,7 +137,7 @@ function showAllCards(cards) {
 function flipCard(cardElement, cards) {
     // Убираем все ограничения на количество открытых карт
     if (cardElement.classList.contains('flipped') || matchedCards.includes(cardElement.dataset.index)) {
-        return;  // Если карта уже открыта или она совпала, игнорируем её
+        return;
     }
 
     cardElement.classList.add('flipped');

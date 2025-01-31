@@ -1,0 +1,92 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Запрещает прокрутку */
+}
+
+
+h1 {
+    color: #222;
+    margin-top: 1px;
+}
+
+.main-header {
+    background-color: #6200ea;
+    color: #fff;
+    padding: 1px;
+    text-align: center;
+}
+
+.main-header nav {
+    margin-top: 10px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    text-decoration: underline;
+    color: #00c1d4;
+}
+
+#score {
+    font-size: 20px;
+    color: #6200ea;
+    margin-top: 20px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+canvas {
+    border: 2px solid #333;
+    background-color: #fff;
+}
+#gameCanvas {
+    transform: scale(0.8); /* Уменьшение игры до 80% от оригинального размера */
+    transform-origin: 0 0; /* Устанавливает начало отсчета для масштаба */
+}
+
+#gameOverContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#restartButton {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#restartButton:hover {
+    background-color: #3700b3;
+}
+
+
+footer.main-footer {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    bottom: 0;
+    width: 100%; /* Футер будет растянут на всю ширину */
+    margin-top: 70px;
+    position: fixed;
+}
