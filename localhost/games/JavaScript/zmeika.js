@@ -7,11 +7,11 @@ const height = canvas.height;
 
 let snake = [{ x: width / 2, y: height / 2 }];
 let direction = "right";
-let nextDirection = "right"; // новое направление, которое будет применено на следующем шаге
+let nextDirection = "right";
 let apple = generateApple();
 let score = 0;
 let game_started = false;
-let isDirectionChanged = false; // флаг, чтобы предотвратить множественные изменения направления
+let isDirectionChanged = false;
 
 function generateApple() {
     let newApple;
@@ -40,7 +40,7 @@ function change_direction(event) {
         game_loop();
     }
 
-    if (isDirectionChanged) return; // если направление уже изменено, игнорируем новое нажатие
+    if (isDirectionChanged) return;
 
     const key = event.key;
     if (key === "ArrowUp" && direction !== "down") {
@@ -63,9 +63,8 @@ document.addEventListener("keydown", change_direction);
 function game_loop() {
     if (!game_started) return;
 
-    // обнова направление змейки
     direction = nextDirection;
-    isDirectionChanged = false; // сбрасываем флаг после обновления направления
+    isDirectionChanged = false;
 
     let head = { ...snake[0] };
 
