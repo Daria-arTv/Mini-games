@@ -15,8 +15,8 @@ let prizes = [];
 let score = 0;
 let gameOver = false;
 let lastShotTime = 0;
-let shootCooldown = 500;  // Начальный интервал между выстрелами
-let maxEnemies = 1;  // Начальное количество врагов, которые могут появляться одновременно
+let shootCooldown = 500;
+let maxEnemies = 1;
 
 let keys = {
     up: false,
@@ -26,7 +26,7 @@ let keys = {
     space: false
 };
 
-// Кнопка перезапуска игры
+//перезапуск
 const restartButton = document.getElementById('restartButton');
 const gameOverContainer = document.getElementById('gameOverContainer');
 
@@ -54,8 +54,8 @@ function gameLoop() {
         return;
     }
 
-    updateShootCooldown();  // Обновляем скорость стрельбы в зависимости от очков
-    updateMaxEnemies();     // Обновляем максимальное количество врагов в зависимости от очков
+    updateShootCooldown();  // обновляем скорость стрельбы в зависимости от очков
+    updateMaxEnemies();     // обновляем максимальное количество врагов в зависимости от очков
 
     clearCanvas();
     moveBullets();
@@ -131,9 +131,8 @@ function generatePrize() {
 }
 
 function moveEnemies() {
-    // Появление врагов в зависимости от максимального количества врагов
     for (let i = 0; i < maxEnemies; i++) {
-        if (Math.random() < 0.01) {  // Вероятность появления врага
+        if (Math.random() < 0.01) {
             generateEnemy();
         }
     }
@@ -234,28 +233,26 @@ function drawScore() {
 }
 
 function showGameOver() {
-    // Отображаем экран окончания игры
     ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.font = "30px Arial";
     ctx.fillStyle = "#fff";
     ctx.fillText("Игра окончена! Счёт: " + score, canvas.width / 2 - 150, canvas.height / 2);
 
-    // Показываем кнопку перезапуска
+
     gameOverContainer.style.display = 'block';
 }
 
 function updateShootCooldown() {
-    shootCooldown = Math.max(300 - Math.floor(score / 10) * 30, 100);  // Уменьшаем интервал между выстрелами
+    shootCooldown = Math.max(300 - Math.floor(score / 10) * 30, 100);
 }
 
 function updateMaxEnemies() {
-    // Увеличиваем максимальное количество врагов каждые 10 очков
-    maxEnemies = Math.floor(score / 10) + 1;  // Например, на 10 очков увеличиваем на 1
+
+    maxEnemies = Math.floor(score / 10) + 1;
 }
 
 function restartGame() {
-    // Сбросить параметры игры
     airplaneX = canvas.width / 2 - 20;
     airplaneY = canvas.height - 100;
     score = 0;
@@ -264,10 +261,8 @@ function restartGame() {
     bullets = [];
     gameOver = false;
 
-    // Скрыть экран окончания игры
     gameOverContainer.style.display = 'none';
 
-    // Перезапуск игрового цикла
     gameLoop();
 }
 
