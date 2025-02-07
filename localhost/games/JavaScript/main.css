@@ -1,0 +1,48 @@
+body {
+    font-family: 'Wallpoet', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: url('pic/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    font-size: 36px;
+    margin-top: 70px;
+}
+.nav a {
+    text-decoration: none;
+    color: #333;
+}
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 110px;
+    flex-grow: 1;
+}
+.logo img {
+    width: 361px;
+    height: 353px;
+    margin-bottom: 16px;
+}
+.welcome-text {
+    font-size: 36px;
+    font-style: italic;
+    margin-top: 77px;
+}
+.footer {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 200;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}

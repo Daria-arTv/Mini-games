@@ -5,7 +5,12 @@ const cell_size = 20;
 const width = canvas.width;
 const height = canvas.height;
 
-let snake = [{ x: width / 2, y: height / 2 }];
+let snake = [
+    { x: width / 2, y: height / 2 },
+    { x: width / 2 - cell_size, y: height / 2 },
+    { x: width / 2 - 2 * cell_size, y: height / 2 }
+];
+
 let direction = "right";
 let nextDirection = "right";
 let apple = generateApple();

@@ -4,7 +4,10 @@ body {
     padding: 0;
     background-color: #f4f4f9;
     color: #333;
-    background-image: url(pic/bg.png)
+    background-image: url(pic/bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
   }
   
@@ -61,11 +64,11 @@ body {
   }
   
   footer {
-    background-color: #333;
-    color: white;
     text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    margin-top: 404px;
   }
   #controls {
     margin: 10px;

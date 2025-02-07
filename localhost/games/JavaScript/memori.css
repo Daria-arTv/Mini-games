@@ -1,11 +1,20 @@
-body {
-    font-family: Arial, sans-serif;
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;  /* Убедимся, что body занимает всю высоту экрана */
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
-    overflow: hidden;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  /* Страница займет всю высоту экрана */
+    background-image: url(pic/bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 header {
@@ -17,13 +26,13 @@ header {
 }
 
 main {
+    flex-grow: 1;  /* Основной контент будет занимать всё доступное пространство */
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100vh - 60px);
 }
 
 h2 {
@@ -117,13 +126,12 @@ button:hover {
     color: #00c1d4;
 }
 
-footer.main-footer {
+footer {
     text-align: center;
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
-    bottom: 0;
     width: 100%;
-    margin-top: 70px;
-    position: fixed;
+    margin-top: 20px;
 }
+

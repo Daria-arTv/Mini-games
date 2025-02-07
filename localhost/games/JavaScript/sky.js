@@ -149,10 +149,6 @@ function moveEnemies() {
 }
 
 function movePrizes() {
-    if (Math.random() < 0.004) {
-        generatePrize();
-    }
-
     for (let i = 0; i < prizes.length; i++) {
         prizes[i].y += prizes[i].speed;
 
@@ -170,9 +166,16 @@ function checkCollisions() {
                 bullets[i].x + bullets[i].width > enemies[j].x &&
                 bullets[i].y < enemies[j].y + enemies[j].height &&
                 bullets[i].y + bullets[i].height > enemies[j].y) {
+                
                 enemies.splice(j, 1);
                 bullets.splice(i, 1);
                 score++;
+
+                // 40% шанс на выпадение подарка
+                if (Math.random() < 0.4) {
+                    generatePrize();
+                }
+
                 i--;
                 break;
             }
@@ -180,6 +183,7 @@ function checkCollisions() {
     }
 
     for (let i = 0; i < prizes.length; i++) {
+        
         if (airplaneX < prizes[i].x + prizes[i].width &&
             airplaneX + airplaneWidth > prizes[i].x &&
             airplaneY < prizes[i].y + prizes[i].height &&
@@ -239,7 +243,6 @@ function showGameOver() {
     ctx.fillStyle = "#fff";
     ctx.fillText("Игра окончена! Счёт: " + score, canvas.width / 2 - 150, canvas.height / 2);
 
-
     gameOverContainer.style.display = 'block';
 }
 
@@ -248,7 +251,6 @@ function updateShootCooldown() {
 }
 
 function updateMaxEnemies() {
-
     maxEnemies = Math.floor(score / 10) + 1;
 }
 
