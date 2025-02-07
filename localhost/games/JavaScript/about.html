@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('pic/bg.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            font-family: 'Wallpoet', sans-serif;
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+        .content {
+            display: grid;
+            grid-template-areas:
+                "left right"
+                "center center";
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 50px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .text-block {
+            font-family: 'Raleway', sans-serif;
+            font-style: italic;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .left {
+            grid-area: left;
+        }
+        .right {
+            grid-area: right;
+        }
+        .center {
+            grid-area: center;
+            text-align: center;
+        }
+        .footer {
+            font-family: 'Raleway', sans-serif;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 200;
+            margin-top: 50px;
+            padding-bottom: 20px;
+        }
+        .text-block {
+            margin-bottom: 80px;
+        }
+        .nav {
+             display: flex;
+            justify-content: center;
+            gap: 100px;
+            font-size: 26px;
+            margin-top: 10px;
+        }
+        .nav a {
+            text-decoration: none;
+        color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>О нас</h1>
+    <div class="nav">
+        <a href="main.html">Главная</a>
+        <a href="Index.html">Мини-игры</a>
+        <a href="contact.html">Контактная информация</a>
+    </div>
+    <div class="content">
+        <div class="text-block left">
+            Добро пожаловать на сайт "Мерси Лада" — уникальное пространство, где вы можете наслаждаться захватывающими мини-играми, созданными для развлечения и расслабления! Наша команда объединяет креативных разработчиков и дизайнеров, которые любят игры и хотят сделать их доступными для всех.
+        </div>
+        <div class="text-block right">
+            Мы верим, что игра — это отличный способ разнообразить досуг, развить умения и просто поднять настроение. "Мерси Лада" предлагает широкий выбор мини-игр, которые подходят для игроков всех возрастов. Здесь вы найдете головоломки, аркады, логические задачи и многое другое.
+        </div>
+        <div class="text-block center">
+            Наша миссия — создать дружелюбное и увлекательное сообщество, где каждый сможет найти свою любимую игру и поделиться ей с друзьями. Мы постоянно работаем над обновлениями и добавлением новых игр, чтобы наши пользователи всегда могли наслаждаться свежими и интересными заданиями.
+            <br><br>
+            Присоединяйтесь к нам, играйте и делитесь своими впечатлениями! Мы рады видеть вас в нашем игровом мире "Мерси Лада"!
+        </div>
+    </div>
+    <div class="footer">2025 Мерси Лада. Все права защищены.</div>
+</body>
+</html>

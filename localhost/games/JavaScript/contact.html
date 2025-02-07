@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактная информация</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('pic/bg.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        h1 {
+            font-family: 'Wallpoet', sans-serif;
+            font-size: 48px;
+            margin-top: 16px;
+        }
+        .intro-text {
+            font-family: 'Raleway', sans-serif;
+            font-style: italic;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: center;
+            margin-top: -250px;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-gap: 50px;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 40px;
+        }
+        .text-block {
+            font-family: 'Raleway', sans-serif;
+            font-style: italic;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .left {
+            grid-column: 1;
+        }
+        .right {
+            grid-column: 3;
+        }
+        .center {
+            grid-column: 2;
+            text-align: center;
+        }
+        .footer {
+            font-family: 'Raleway', sans-serif;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 200;
+            margin-top: 50px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        .logo {
+            width: 250px;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            font-size: 36px;
+            margin-top: 70px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Контактная информация</h1>
+    <div class="intro-text">
+        <div class="nav">
+            <a href="main.html">Главная</a>
+            <a href=about.html>О нас</a>
+            <a href="Index.html">Мини-игры</a>
+        </div>
+        Мы всегда рады читателям и пользователям. Свяжитесь с нами по следующим каналам:
+    </div>
+    <div class="content">
+        <div class="text-block left">
+            <ul>
+                <li>Email: support@mersilada.com</li>
+                <li>Телефон: +7 (123) 456-78-90</li>
+                <li>Социальные сети:
+                    <ul>
+                        <li>Вконтакте</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="center">
+            <img src="pic/logo.png" alt="Логотип" class="logo">
+        </div>
+        <div class="text-block right">
+            Наши часы работы:
+            <ul>
+                <li>Пн-Пт: 9:00-16:00</li>
+                <li>Сб-Вс: Выходной</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">2025 Мерси Лада. Все права защищены.</div>
+</body>
+</html>

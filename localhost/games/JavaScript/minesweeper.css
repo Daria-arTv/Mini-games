@@ -1,11 +1,13 @@
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
   color: #333;
-  background-image: url(pic/bg.png)
+  background-image: url(pic/bg.png);
+  background-size: 1920px 1080px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 h1, h2 {
