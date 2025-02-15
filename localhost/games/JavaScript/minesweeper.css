@@ -8,6 +8,9 @@ body {
   background-size: 1920px 1080px;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h1, h2 {
@@ -16,18 +19,19 @@ h1, h2 {
 }
 
 .main-header {
-  background-color: #6200ea;
-  color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-.main-header nav {
-  margin-top: 10px;
+.main-header nav a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 18px;
 }
 
 .nav-link {
-  color: #fff;
+  color: #333;
   text-decoration: none;
   margin: 0 10px;
   font-size: 16px;
@@ -112,9 +116,12 @@ button:hover {
 .main-footer {
   text-align: center;
   padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  margin-top: 357px;
+  color: #333;
+  margin-top: auto;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(16px, 1.5vw, 24px);
+  font-style: italic;
+  font-weight: 200;
 }
 .modal {
   display: none;

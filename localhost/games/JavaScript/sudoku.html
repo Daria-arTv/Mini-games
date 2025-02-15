@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Судоку</title>
+  <link rel="stylesheet" href="sudoku.css">
+</head>
+<body>
+  <h1>Судоку</h1>
+  <nav>
+    <a href="main.html">Главная</a>
+            <a href="Index.html">Мини-игры</a>
+            <a href="about.html">О нас</a>
+  </nav>
+  <div class="container">
+    <div id="sudoku-board"></div>
+    <div id="difficulty-panel">
+      <h2>Выбор сложности</h2>
+      <button class="difficulty-button" data-difficulty="easy">Легкий</button>
+      <button class="difficulty-button" data-difficulty="medium">Средний</button>
+      <button class="difficulty-button" data-difficulty="hard">Сложный</button>
+      <button id="new-game-button" class="difficulty-button">Новая игра</button>
+    </div>
+  </div>
+  
+  <div id="digit-panel">
+    <h2>Выберите цифру</h2>
+    <div id="numbers">
+      <div class="number" id="number-1">1<br><span class="count">0</span></div>
+      <div class="number" id="number-2">2<br><span class="count">0</span></div>
+      <div class="number" id="number-3">3<br><span class="count">0</span></div>
+      <div class="number" id="number-4">4<br><span class="count">0</span></div>
+      <div class="number" id="number-5">5<br><span class="count">0</span></div>
+      <div class="number" id="number-6">6<br><span class="count">0</span></div>
+      <div class="number" id="number-7">7<br><span class="count">0</span></div>
+      <div class="number" id="number-8">8<br><span class="count">0</span></div>
+      <div class="number" id="number-9">9<br><span class="count">0</span></div>
+    </div>
+    <button id="clear-digit" class="clear-digit">Стереть</button>
+  </div>
+  <div class="footer">2025 Мерси Лада. Все права защищены.</div>
+
+  <script src="sudoku.js"></script>
+</body>
+</html>

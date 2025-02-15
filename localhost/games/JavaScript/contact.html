@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контактная информация</title>
     <style>
-       body {
+         body {
     font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
@@ -18,90 +18,99 @@
     align-items: center;
     justify-content: space-between;
 }
+
 h1 {
-    font-family: 'Wallpoet', sans-serif;
-    font-size: clamp(32px, 4vw, 48px);
-    margin-top: 16px;
-}
-.intro-text {
-    font-family: 'Raleway', sans-serif;
-    font-style: italic;
-    font-weight: 800;
-    font-size: clamp(16px, 2vw, 20px);
-    line-height: 1.8;
     text-align: center;
-    margin-top: -10vh;
 }
-.content {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-gap: 5vw;
-    max-width: 90%;
-    width: 100%;
-    margin-top: 4vh;
+
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    font-size: clamp(20px, 2.5vw, 36px);
+    margin-top: 5vh;
 }
-.text-block {
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+}
+        .intro-text {
+            font-family: 'Raleway', sans-serif;
+            font-style: italic;
+            font-weight: 800;
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.8;
+            text-align: center;
+            margin-top: -10vh;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-gap: 5vw;
+            max-width: 90%;
+            width: 100%;
+            margin-top: 4vh;
+        }
+
+        .text-block {
     font-family: 'Raleway', sans-serif;
     font-style: italic;
     font-weight: 800;
     font-size: clamp(16px, 2vw, 20px);
     line-height: 1.8;
     text-align: justify;
-}
-.left {
-    grid-column: 1;
-}
-.right {
-    grid-column: 3;
-}
-.center {
-    grid-column: 2;
-    text-align: center;
-}
-.footer {
-    font-family: 'Raleway', sans-serif;
-    font-size: clamp(16px, 1.5vw, 24px);
-    font-style: italic;
-    font-weight: 200;
-    margin-top: 5vh;
-    padding-bottom: 2vh;
-    text-align: center;
-}
-.logo {
-    width: clamp(150px, 20vw, 250px);
-}
-.nav {
-    display: flex;
-    justify-content: center;
-    gap: 5vw;
-    font-size: clamp(20px, 3vw, 36px);
-    margin-top: 7vh;
-}
-.nav a {
-    text-decoration: none;
-    color: #333;
+    margin-bottom: 8vh;
 }
 
-@media (max-width: 768px) {
-    .content {
-        grid-template-columns: 1fr;
-        grid-gap: 3vh;
-    }
+        .left {
+            grid-column: 1;
+        }
 
-    .intro-text {
-        margin-top: 0;
-    }
+        .right {
+            grid-column: 3;
+        }
 
-    .nav {
-        flex-direction: column;
-        gap: 2vh;
-    }
+        .center {
+            grid-column: 2;
+            text-align: center;
+        }
 
-    .logo {
-        width: 60vw;
-    }
-}
+        .footer {
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(16px, 1.5vw, 24px);
+            font-style: italic;
+            font-weight: 200;
+            margin-top: 5vh;
+            padding-bottom: 2vh;
+            text-align: center;
+        }
 
+        .logo {
+            width: clamp(150px, 20vw, 250px);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                grid-gap: 3vh;
+            }
+
+            .intro-text {
+                margin-top: 0;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 2vh;
+            }
+
+            .logo {
+                width: 60vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -109,8 +118,8 @@ h1 {
     <div class="intro-text">
         <div class="nav">
             <a href="main.html">Главная</a>
-            <a href=about.html>О нас</a>
             <a href="Index.html">Мини-игры</a>
+            <a href="about.html">О нас</a>
         </div>
         Мы всегда рады читателям и пользователям. Свяжитесь с нами по следующим каналам:
     </div>

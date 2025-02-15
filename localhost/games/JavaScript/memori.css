@@ -18,8 +18,7 @@ body {
 }
 
 header {
-    background-color: #6200ea;
-    color: white;
+    color: 333;
     padding: 10px 20px;
     text-align: center;
     width: 100%;
@@ -114,24 +113,20 @@ button:hover {
     text-align: center;
 }
 
-.nav-link {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 16px;
-}
-
-.nav-link:hover {
-    text-decoration: underline;
-    color: #00c1d4;
-}
-
 footer {
     text-align: center;
     padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    width: 100%;
-    margin-top: 20px;
+    color: #333;
+    margin-top: auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(16px, 1.5vw, 24px); /* Этот стиль задает гибкий размер шрифта */
+    font-style: italic; /* Делает текст курсивом */
+    font-weight: 200; /* Легкий вес шрифта, как в сапёре */
 }
 
+nav a {
+    color: #000;
+    text-decoration: none;
+    margin: 0 40px;
+    font-size: 18px;
+}

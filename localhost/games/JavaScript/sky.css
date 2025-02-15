@@ -17,7 +17,6 @@ h1 {
 }
 
 .main-header {
-    background-color: #6200ea;
     color: #fff;
     padding: 1px;
     text-align: center;
@@ -59,8 +58,8 @@ canvas {
     background-color: #fff;
 }
 #gameCanvas {
-    transform: scale(0.8); /* Уменьшение игры до 80% от оригинального размера */
-    transform-origin: 0 0; /* Устанавливает начало отсчета для масштаба */
+    transform: scale(0.8);
+    transform-origin: 0 0;
 }
 
 #gameOverContainer {
@@ -88,10 +87,15 @@ canvas {
 footer.main-footer {
     text-align: center;
     padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
+    color: #333;
     bottom: 0;
     width: 100%;
     margin-top: 70px;
     position: fixed;
+}
+nav a {
+    color: #000;
+    text-decoration: none;
+    margin: 0 40px;
+    font-size: 18px;
 }

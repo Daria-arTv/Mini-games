@@ -1,85 +1,121 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-    background-image: url(pic/bg.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+  background-image: url(pic/bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Позволяет футеру оставаться внизу страницы */
+  font-size: clamp(18px, 2vw, 24px);  /* Адаптивный размер шрифта */
+}
 
-  }
-  
-  header {
-    background-color: #6200ea;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-  }
-  
-  main {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  main h2 {
-    color: #6200ea;
-  }
-  
-  .games {
-    display: flex;
-    flex-wrap: wrap;
+header {
+  color: #333;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: clamp(22px, 2.5vw, 20px);
+}
+
+main {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+main h2 {
+  color: #333;
+  text-align: center;
+  font-size: clamp(15px, 2vw, 20px);
+}
+
+.games {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.game {
+  width: 200px;
+  text-align: center;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.game img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  height: 120px;
+  object-fit: cover;
+}
+
+.game p {
+  margin: 10px 0;
+  font-size: clamp(14px, 2vw, 18px);
+  color: #6200ea;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #333;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(16px, 1.5vw, 24px);
+  font-style: italic;
+  font-weight: 200;
+  margin-top: auto;
+}
+
+#controls {
+  margin: 10px;
+}
+
+#difficulty {
+  padding: 5px;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  font-size: clamp(10px, 2.5vw, 36px);
+  margin-top: 2px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 1px 2px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
     gap: 20px;
-    justify-content: center;
   }
-  
-  .game {
-    width: 200px;
-    text-align: center;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .game:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .game img {
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-    height: 120px;
-    object-fit: cover;
-  }
-  
-  .game p {
-    margin: 10px 0;
-    font-size: 1em;
-    color: #6200ea;
-  }
-  
+
   footer {
-    text-align: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    margin-top: 404px;
+    padding: 15px;
   }
-  #controls {
-    margin: 10px;
-  }
-  
-  #difficulty {
-    padding: 5px;
-    font-size: 1rem;
-    margin-left: 10px;
-  }
-  
-  button {
-    margin-left: 10px;
-  }
+}
