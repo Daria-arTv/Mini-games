@@ -9,6 +9,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
+    overflow: hidden;
 
 }
 
@@ -18,8 +19,7 @@ h1 {
 }
 
 .main-header {
-    background-color: #6200ea;
-    color: #fff;
+    color: #333;
     padding: 20px;
     text-align: center;
 }
@@ -29,7 +29,7 @@ h1 {
 }
 
 .nav-link {
-    color: #fff;
+    color: #333;
     text-decoration: none;
     margin: 0 10px;
     font-size: 16px;
@@ -43,7 +43,7 @@ h1 {
 
 #score {
     font-size: 20px;
-    color: #6200ea;
+    color: #333;
 }
 
 .game-container {
@@ -61,9 +61,17 @@ canvas {
 
 footer.main-footer {
     text-align: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    margin-top: 76px;
+  padding: 10px 20px;
+  color: #333;
+  margin-top: auto;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(16px, 1.5vw, 24px);
+  font-style: italic;
+  font-weight: 200;
 }
-
+nav a {
+    color: #000;
+    text-decoration: none;
+    margin: 0 40px;
+    font-size: 18px;
+}

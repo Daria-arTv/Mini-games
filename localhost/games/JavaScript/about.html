@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>О нас</title>
     <style>
         body {
@@ -16,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 h1 {
     font-family: 'Wallpoet', sans-serif;
@@ -61,7 +62,15 @@ h1 {
     padding-bottom: -150vh;
 }
 .nav {
-    margin-top: 1vh;
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    font-size: clamp(20px, 2.5vw, 36px);
+    margin-top: 5vh;
+}
+.nav a {
+    text-decoration: none;
+    color: #333;
 }
 h1 {
     text-align: center;

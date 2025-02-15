@@ -251,7 +251,7 @@ function updateShootCooldown() {
 }
 
 function updateMaxEnemies() {
-    maxEnemies = Math.floor(score / 10) + 1;
+    maxEnemies = Math.max(Math.floor(score / 10) + 1, 1);
 }
 
 function restartGame() {
