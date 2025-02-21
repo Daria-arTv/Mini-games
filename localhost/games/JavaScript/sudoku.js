@@ -96,16 +96,19 @@ function calculateRequiredCounts(board) {
 }
 
 function updateDynamicCounts() {
+  console.log("Обновление подсчета заполненных клеток...");
+
   const requiredCounts = calculateRequiredCounts(correctBoard);
   const correctFilled = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
   const cells = board.children;
   let filledCells = 0;
 
-  for (let idx = 0; idx < cells.length; idx++) {
+   for (let idx = 0; idx < cells.length; idx++) {
     const cell = cells[idx];
     const row = Math.floor(idx / 9);
     const col = idx % 9;
     const correctDigit = correctBoard[row][col];
+
     if (cell.hasAttribute('readonly')) {
       correctFilled[correctDigit] = (correctFilled[correctDigit] || 0) + 1;
     } else {
@@ -119,7 +122,6 @@ function updateDynamicCounts() {
       }
     }
   }
-
   for (let d = 1; d <= 9; d++) {
     const remaining = requiredCounts[d] - (correctFilled[d] || 0);
     const numberElement = document.getElementById(`number-${d}`);
@@ -157,6 +159,7 @@ function isSolvedCorrectly() {
 function showVictoryMessage() {
   alert("Поздравляем! Вы выиграли!");
 }
+
 function checkForErrors(cell, row, col) {
   const inputText = cell.value.trim();
   if (inputText === '') {

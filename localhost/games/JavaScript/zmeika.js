@@ -99,7 +99,11 @@ function game_loop() {
         window.location.reload();
         return;
     }
-
+    if (snake.length >= 63) {
+        alert(`Победа! Ваш счёт: ${score}`);
+        window.location.reload();
+        return;
+    }
     ctx.clearRect(0, 0, width, height);
     draw_snake();
     draw_apple();

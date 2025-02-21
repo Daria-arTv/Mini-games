@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Крестики-Нолики</title>
+  <link rel="stylesheet" href="Circles.css">
+  <style>
+    #help-button {
+  display: inline-block;
+  align-self: center;
+  width: auto;
+  padding: 12px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      position: relative;
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 70%;
+      max-width: 600px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .rule-paragraph {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-header">
+    <h1>Крестики-Нолики</h1>
+    <nav>
+      <a href="main.html" class="nav-link">Главная</a>
+      <a href="Index.html" class="nav-link">Мини-игры</a>
+      <a href="contact.html" class="nav-link">Контактная информация</a>
+    </nav>
+  </div>
+  <button id="help-button">Как играть</button>
+
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-help-modal" class="close">&times;</span>
+      <h2>Как играть в крестики-нолики</h2>
+      <p>Игра начинается с пустого поля. Игрок и компьютер делают ходы поочередно, ставя крестик или нолик в любую пустую клетку.</p>
+      <p>Уровень сложности зависит от размера поля:</p>
+      <ul>
+        <li>От 3x3 до 4x4 — 3 символа в ряд или по диагонали для победы.</li>
+        <li>От 5x5 до 10x10 — 5 символов в ряд или по диагонали для победы.</li>
+      </ul>
+      <p>Первым ходит игрок, после чего компьютер ставит нолик в случайное место.</p>
+      <p>Побеждает тот, кто первым выстроит линию из трёх своих символов горизонтально, вертикально или диагонально.</p>
+      <p>Если все клетки заполнены, а линия из трёх символов не выстроена, объявляется ничья.</p>
+    </div>
+  </div>
+
+  <div class="game-container">
+    <label for="size">Выберите размер поля:</label>
+    <select id="size" onchange="createBoard()">
+      <option value="3">3x3</option>
+      <option value="4">4x4</option>
+      <option value="5">5x5</option>
+      <option value="6">6x6</option>
+      <option value="7">7x7</option>
+      <option value="8">8x8</option>
+      <option value="9">9x9</option>
+      <option value="10">10x10</option>
+    </select>
+    <div id="board" class="board"></div>
+    <div id="status"></div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-message"></h2>
+      <button onclick="restartGame()">Сыграть снова</button>
+    </div>
+  </div>
+  <footer class="main-footer">
+    <p>2025 Мерси Лада. Все права защищены.</p>
+  </footer>
+
+  <script src="Circles.js"></script>
+  <script>
+    const helpButton = document.getElementById("help-button");
+    const helpModal = document.getElementById("help-modal");
+    const closeHelpModal = document.getElementById("close-help-modal");
+
+    helpButton.addEventListener("click", () => {
+      helpModal.style.display = "block";
+    });
+
+    closeHelpModal.addEventListener("click", () => {
+      helpModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === helpModal) {
+        helpModal.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

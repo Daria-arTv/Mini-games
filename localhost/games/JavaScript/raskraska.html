@@ -1,352 +1,127 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Раскраска с выбором фотографии</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: url('pic/bg.png') no-repeat center center fixed;
-  background-size: cover;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-    #upload-section {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    #main-container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    #grid-container {
-      border: 3px solid #000;
-      padding: 10px;
-      background: #fff;
-      margin: 0 auto;
-    }
-    #grid {
-  display: grid;
-  grid-template-columns: repeat(40, 1fr);
-  grid-gap: 0;
-}
-.cell {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  user-select: none;
-  cursor: pointer;
-}
-    .non-paintable {
-      cursor: default;
-    }
-    #palette-container {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 100px;
-      max-height: calc(100vh - 40px);
-      overflow-y: auto;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-    .palette-item {
-      margin-bottom: 10px;
-      text-align: center;
-      cursor: pointer;
-    }
-    .palette-color {
-      width: 30px;
-      height: 30px;
-      margin: 0 auto 5px;
-      border: 1px solid #ccc;
-    }
-    #grid-container button {
-      margin-top: 10px;
-      padding: 5px 10px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .main-header {
-  padding: 20px;
-  text-align: center;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Раскраска</title>
+    <link rel="stylesheet" href="raskraska.css">
+    <style>
+        #help-button {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-.main-header nav a {
-  color: #333;
-  text-decoration: none;
-  margin: 0 20px;
-  font-size: 18px;
-}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
-.nav-link {
-  color: #333;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
-}
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 70%;
+            max-width: 600px;
+        }
 
-.main-footer {
-  text-align: center;
-  padding: 15px 0;
-}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-.main-footer p {
-    text-align: center;
-  padding: 10px 20px;
-  color: #333;
-  margin-top: auto;
-  font-family: 'Raleway', sans-serif;
-  font-size: clamp(16px, 1.5vw, 24px);
-  font-style: italic;
-  font-weight: 200;
-}
-  </style>
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .rule-paragraph {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
         <h1>Раскраска</h1>
         <nav>
-          <a href="main.html">Главная</a>
-          <a href="index.html">Мини-игры</a>
-          <a href="about.html">О нас</a>
+            <a href="main.html">Главная</a>
+            <a href="index.html">Мини-игры</a>
+            <a href="about.html">О нас</a>
         </nav>
-      </header>
-  <div id="upload-section">
-    <input type="file" id="image-input" accept="image/*">
-  </div>
-  
-  <div id="main-container">
-    <div id="grid-container">
-      <div id="grid"></div>
-      <button id="reset-btn">Сбросить раскраску</button>
-      <button id="show-solution-btn">Показать решение</button>
+        <button id="help-button">Как играть</button>
+    </header>
+
+    <div id="upload-section">
+        <input type="file" id="image-input" accept="image/*">
     </div>
-    <div id="palette-container"></div>
-  </div>
 
-  <div id="grid"></div>
-  
-  <canvas id="hidden-canvas" style="display: none;"></canvas>
-  <footer class="main-footer">
-    <p>2025 Мерси Лада. Все права защищены.</p>
-  </footer>
-  <script>
-    const gridRows = 80;
-    const gridCols = 80;
-    const cellSize = 15;
-    
-    
-    const gridElem = document.getElementById('grid');
-    gridElem.style.gridTemplateColumns = `repeat(${gridCols}, ${cellSize}px)`;
-    
-    const imageInput = document.getElementById('image-input');
-    const paletteContainer = document.getElementById('palette-container');
-    const resetBtn = document.getElementById('reset-btn');
-    const showSolutionBtn = document.getElementById('show-solution-btn');
-    
-    const hiddenCanvas = document.getElementById('hidden-canvas');
-    const ctx = hiddenCanvas.getContext('2d');
-    
-    let solutionGrid = [];
-    let digitGrid = [];
-    let paletteMapping = {};
-    let currentColor = null;
-    
-    imageInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const img = new Image();
-        img.onload = function() {
-          processImage(img);
-        }
-        img.src = evt.target.result;
-      }
-      reader.readAsDataURL(file);
-    });
-    
-    function processImage(img) {
-      hiddenCanvas.width = gridCols;
-      hiddenCanvas.height = gridRows;
-      
-      ctx.drawImage(img, 0, 0, gridCols, gridRows);
-      const imgData = ctx.getImageData(0, 0, gridCols, gridRows).data;
-      
-      solutionGrid = [];
-      const colorCount = {};
-      
-      for (let row = 0; row < gridRows; row++) {
-        solutionGrid[row] = [];
-        for (let col = 0; col < gridCols; col++) {
-          const index = (row * gridCols + col) * 4;
-          let r = imgData[index];
-          let g = imgData[index + 1];
-          let b = imgData[index + 2];
-          r = Math.round(r / 85) * 85;
-          g = Math.round(g / 85) * 85;
-          b = Math.round(b / 85) * 85;
-          if (r > 255) r = 255;
-          if (g > 255) g = 255;
-          if (b > 255) b = 255;
-          const hex = rgbToHex(r, g, b);
-          solutionGrid[row][col] = hex;
-          // белый цвет не учитываеb
-          if (hex !== "#ffffff") {
-            colorCount[hex] = (colorCount[hex] || 0) + 1;
-          }
-        }
-      }
-      
-      const uniqueColors = Object.keys(colorCount);
-      uniqueColors.sort((a, b) => colorCount[b] - colorCount[a]);
-      
-      paletteMapping = {};
-      digitGrid = [];
-      const maxColors = 50; // огранич кол цвет
-      uniqueColors.forEach((color, index) => {
-        if (index < maxColors) {
-          const digit = (index + 1).toString();
-          paletteMapping[digit] = color;
-        }
-      });
-      
+    <div id="main-container">
+        <div id="grid-container">
+            <div id="grid"></div>
+            <button id="reset-btn">Сбросить раскраску</button>
+            <button id="show-solution-btn">Показать решение</button>
+        </div>
+        <div id="palette-container"></div>
+    </div>
 
-      for (let row = 0; row < gridRows; row++) {
-        digitGrid[row] = [];
-        for (let col = 0; col < gridCols; col++) {
-          if (solutionGrid[row][col] === "#ffffff") {
-            digitGrid[row][col] = "";
-          } else {
-            const targetColor = solutionGrid[row][col];
-            let bestDigit = null;
-            let bestDistance = Infinity;
-            for (const [digit, paletteColor] of Object.entries(paletteMapping)) {
-              const dist = colorDistance(targetColor, paletteColor);
-              if (dist < bestDistance) {
-                bestDistance = dist;
-                bestDigit = digit;
-              }
-            }
-            digitGrid[row][col] = bestDigit;
-          }
-        }
-      }
-      
-      generateGridUI();
-      generatePaletteUI();
-    }
-    
-    function rgbToHex(r, g, b) {
-      return "#" + [r, g, b].map(x => {
-        const hex = x.toString(16);
-        return hex.length === 1 ? "0" + hex : hex;
-      }).join('');
-    }
-    
-    function hexToRgb(hex) {
-      hex = hex.replace('#', '');
-      const bigint = parseInt(hex, 16);
-      return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
-    }
-    
-    function colorDistance(hex1, hex2) {
-      const rgb1 = hexToRgb(hex1);
-      const rgb2 = hexToRgb(hex2);
-      const dr = rgb1.r - rgb2.r;
-      const dg = rgb1.g - rgb2.g;
-      const db = rgb1.b - rgb2.b;
-      return Math.sqrt(dr * dr + dg * dg + db * db);
-    }
-    
-    function hexToRgba(hex, alpha) {
-      const { r, g, b } = hexToRgb(hex);
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    }
-    
-    function generateGridUI() {
-      gridElem.innerHTML = '';
-      for (let row = 0; row < gridRows; row++) {
-        for (let col = 0; col < gridCols; col++) {
-          const cell = document.createElement('div');
-          cell.className = 'cell';
-          if (digitGrid[row][col] === "") {
-            cell.classList.add('non-paintable');
-            cell.style.backgroundColor = "#ffffff";
-          } else {
-            cell.textContent = digitGrid[row][col];
-            cell.dataset.row = row;
-            cell.dataset.col = col;
-            cell.addEventListener('click', () => {
-              if (!currentColor) return;
-              const expectedDigit = digitGrid[row][col];
-              const correctColor = paletteMapping[expectedDigit];
-              if (currentColor === correctColor) {
-                cell.style.backgroundColor = currentColor;
-                cell.textContent = '';
-              } else {
-                cell.style.backgroundColor = hexToRgba(currentColor, 0.5);
-              }
-            });
-          }
-          gridElem.appendChild(cell);
-        }
-      }
-    }
-    
-    function generatePaletteUI() {
-      paletteContainer.innerHTML = '';
-      for (const [digit, color] of Object.entries(paletteMapping)) {
-        const item = document.createElement('div');
-        item.className = 'palette-item';
-        item.addEventListener('click', () => {
-          currentColor = color;
-          document.querySelectorAll('.palette-color').forEach(el => el.style.border = '1px solid #ccc');
-          colorBox.style.border = '3px solid #000';
+    <div id="grid"></div>
+
+    <canvas id="hidden-canvas" style="display: none;"></canvas>
+
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-help-modal" class="close">&times;</span>
+            <h2>Как играть в раскраску</h2>
+            <p class="rule-paragraph">Пользователь выбирает цвет из палитры и закрашивает отдельные клетки на сетке, чтобы они соответствовали изображению.</p>
+            <p class="rule-paragraph">Нажмите на клетку, чтобы закрасить её выбранным цветом.</p>
+            <p class="rule-paragraph">Используйте кнопку "Сбросить раскраску" для начала заново.</p>
+            <p class="rule-paragraph">Когда раскраска будет готова, вы можете проверить решение, нажав кнопку "Показать решение".</p>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>2025 Мерси Лада. Все права защищены.</p>
+    </footer>
+
+    <script src="raskraska.js"></script>
+
+    <script>
+        const helpButton = document.getElementById("help-button");
+        const helpModal = document.getElementById("help-modal");
+        const closeHelpModal = document.getElementById("close-help-modal");
+
+        helpButton.addEventListener("click", () => {
+            helpModal.style.display = "block";
         });
-        const colorBox = document.createElement('div');
-        colorBox.className = 'palette-color';
-        colorBox.style.backgroundColor = color;
-        const label = document.createElement('div');
-        label.textContent = digit;
-        item.appendChild(colorBox);
-        item.appendChild(label);
-        paletteContainer.appendChild(item);
-      }
-    }
-    
-    resetBtn.addEventListener('click', generateGridUI);
-    showSolutionBtn.addEventListener('click', () => {
-  document.querySelectorAll('.cell').forEach(cell => {
-    const row = cell.dataset.row;
-    const col = cell.dataset.col;
-    if (row !== undefined && col !== undefined) {
-      const digit = digitGrid[row]?.[col];
-      if (digit && paletteMapping[digit]) {
-        const correctColor = paletteMapping[digit];
-        cell.style.backgroundColor = correctColor;
-        cell.textContent = '';
-      }
-    }
-  });
-});
-  </script>
+
+        closeHelpModal.addEventListener("click", () => {
+            helpModal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === helpModal) {
+                helpModal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
