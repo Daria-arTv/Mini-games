@@ -17,8 +17,20 @@
     </header>
 
     <main>
-        <h2>Правила игры</h2>
-        <p>Поиграйте в классическую игру Мемори, где нужно находить пары картинок!</p>
+        <div class="button-container">
+            <button id="open-rules">Как играть</button>
+        </div>
+      <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Как играть в мемори</h2>
+            <p>Игра начинается с полностью открытых карт, которые отображаются 3 секунды и закрываются после этого.</p>
+            <p>Игроки по очереди открывают две карты, стараясь найти пару.</p>
+            <p>Если открытые карты совпадают, они остаются открытыми.</p>
+            <p>Если карты не совпадают, они возвращаются в исходное положение (лицевой стороной вниз).</p>
+            <p>Игра продолжается до тех пор, пока все пары не будут найдены.</p>
+        </div>
+    </div>
 
         <div id="controls">
             <label for="difficulty">Выберите сложность:</label>
@@ -45,4 +57,25 @@
 
     <script src="memori.js"></script>
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("rules-modal");
+  const openModal = document.getElementById("open-rules");
+  const closeModal = document.querySelector(".close");
+
+  openModal.addEventListener("click", () => {
+      modal.style.display = "block";
+  });
+
+  closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+          modal.style.display = "none";
+      }
+  });
+});
+</script>
 </html>

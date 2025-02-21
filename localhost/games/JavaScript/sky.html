@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Игра: Самолетик</title>
     <link rel="stylesheet" href="sky.css">
+    <style>
+        #help-button {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 70%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .rule-paragraph {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -14,6 +67,7 @@
             <a href="Index.html">Мини-игры</a>
             <a href="about.html">О нас</a>
         </nav>
+        <button id="help-button">Как играть</button>
     </header>
 
     <div class="game-container">
@@ -23,8 +77,24 @@
     <div id="gameOverContainer" style="display: none;">
         <button id="restartButton">Перезапуск</button>
     </div>
+    
     <div id="score">
         Очки: <span id="scoreValue">0</span>
+    </div>
+
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-help-modal" class="close">&times;</span>
+            <h2>Как играть в Призы и бомбы</h2>
+            <p class="rule-paragraph">Игра начинается с полностью пустого поля.</p>
+            <p class="rule-paragraph">С верхней части поля без перерыва начинают падать бомбы (синие прямоугольники) и призы (зелёные квадратики).</p>
+            <p class="rule-paragraph">Игрок может управлять мини-пушкой и стрелять в бомбы.</p>
+            <p class="rule-paragraph">Если игрок попадает по бомбам, то они исчезают и на поле остаются только призы.</p>
+            <p class="rule-paragraph">Призы появляются случайным образом с вероятностью 40%.</p>
+            <p class="rule-paragraph">Если игрок промахивается, то у него есть возможность уклониться от бомб.</p>
+            <p class="rule-paragraph">Каждые 10 очков начинает появляться больше бомб.</p>
+            <p class="rule-paragraph">Игра продолжается до тех пор, пока игрок не наткнётся на бомбу.</p>
+        </div>
     </div>
 
     <footer class="main-footer">
@@ -32,5 +102,25 @@
     </footer>
 
     <script src="sky.js"></script>
+
+    <script>
+        const helpButton = document.getElementById("help-button");
+        const helpModal = document.getElementById("help-modal");
+        const closeHelpModal = document.getElementById("close-help-modal");
+
+        helpButton.addEventListener("click", () => {
+            helpModal.style.display = "block";
+        });
+
+        closeHelpModal.addEventListener("click", () => {
+            helpModal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === helpModal) {
+                helpModal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>

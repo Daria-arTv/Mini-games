@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>2048</title>
+  <link rel="stylesheet" href="1024.css">
+  <style>
+    #help-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 70%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    .rule-paragraph {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>2048</h1>
+    <nav>
+      <a href="main.html">Главная</a>
+      <a href="Index.html">Мини-игры</a>
+      <a href="about.html">О нас</a>
+    </nav>
+    <button id="help-button">Как играть</button>
+  </header>
+
+  <div id="grid">
+    <div id="game-over">
+      Игра окончена
+      <button id="restart">Новая игра</button>
+    </div>
+    <div id="win-overlay">
+      You Win!
+      <button id="continue">Бесконечная игра</button>
+      <button id="new-game">Начать новую игру</button>
+    </div>
+  </div>
+
+  <div class="footer">2025 Мерси Лада. Все права защищены.</div>
+
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-help-modal">&times;</span>
+      <h2>Как играть в 2048</h2>
+      <p class="rule-paragraph">Игрок перемещает плитки в одном из четырёх направлений (вверх, вниз, влево, вправо) с помощью стрелок.</p>
+      <p class="rule-paragraph">При движении плитки объединяются, если сталкиваются с плиткой с таким же числом.</p>
+      <p class="rule-paragraph">Объединённая плитка увеличивает своё значение вдвое.</p>
+      <p class="rule-paragraph">После каждого хода на поле добавляется новая плитка с числом 2 или 4.</p>
+      <p class="rule-paragraph">Игрок побеждает, когда сумма очков достигает 2048.</p>
+      <p class="rule-paragraph">Игра проигрывается, когда все клетки заняты и нет возможности сделать ход.</p>
+    </div>
+  </div>
+
+  <script src="1024.js"></script>
+
+  <script>
+    const helpButton = document.getElementById("help-button");
+    const helpModal = document.getElementById("help-modal");
+    const closeHelpModal = document.getElementById("close-help-modal");
+
+    helpButton.addEventListener("click", () => {
+      helpModal.style.display = "block";
+    });
+
+    closeHelpModal.addEventListener("click", () => {
+      helpModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === helpModal) {
+        helpModal.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
