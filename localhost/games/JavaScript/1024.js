@@ -1,12 +1,12 @@
-const gridSize = 4;
-const tileSize = 100;
-const gap = 10;
+const gridSize = 4; // размер игрового поля 4x4
+const tileSize = 100;// размер плитки в пикселях
+const gap = 10;  // расстояние между плитками
 
-let board = [];
-let tileIdCounter = 0;
-let tileElements = {};
-let tilesToRemove = [];
-let winTriggered = false;
+let board = []; //массив (игровое поле)
+let tileIdCounter = 0; // счетчик для присваивания уникальных ID плиткам
+let tileElements = {}; // объект, хранящий HTML-элементы плиток
+let tilesToRemove = [];// плитки, которые нужно удалить после объединения
+let winTriggered = false; // отслеживает достижения 2048
 
 function initBoard() {
   board = [];
@@ -18,26 +18,27 @@ function initBoard() {
     board.push(row);
   }
   const grid = document.getElementById("grid");
-  grid.querySelectorAll('.tile').forEach(tile => tile.remove());
-  tileElements = {};
-  tileIdCounter = 0;
-  tilesToRemove = [];
-  winTriggered = false;
+  grid.querySelectorAll('.tile').forEach(tile => tile.remove()); // удаляет старые плитки
+  tileElements = {};// очищает объект с плитками
+  tileIdCounter = 0;// обнуляет ID счетчик плиток
+  tilesToRemove = []; // очищает массив удаляемых плиток
+  winTriggered = false; // Сбрасывает победу
 
   document.getElementById("game-over").style.display = "none";
   document.getElementById("win-overlay").style.display = "none";
 
+//добавляет две случайные плитки в начале игры
   addRandomTile();
   addRandomTile();
   updateBoard();
 }
-
+// вычисл позиции плитки
 function getTilePosition(row, col) {
   let top = gap + row * (tileSize + gap);
   let left = gap + col * (tileSize + gap);
   return { top, left };
 }
-
+//созд новой плитки
 function addRandomTile() {
   let emptyCells = [];
   for (let r = 0; r < gridSize; r++) {
@@ -47,9 +48,10 @@ function addRandomTile() {
       }
     }
   }
+  //Нахожд пустых клеток на игровом поле
   if (emptyCells.length > 0) {
     let { r, c } = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    let value = Math.random() < 0.9 ? 2 : 4;
+    let value = Math.random() < 0.9 ? 2 : 4; // 90% шанс получить 2, 10% шанс получить 4
     let tile = { id: tileIdCounter++, value: value, merged: false };
     board[r][c] = tile;
     createTileElement(tile, r, c);
@@ -68,7 +70,7 @@ function createTileElement(tile, row, col) {
   grid.appendChild(div);
   tileElements[tile.id] = div;
 }
-
+//сдвиг/объединение плиток
 function slideRow(row) {
   let filtered = row.filter(tile => tile !== null);
   let missing = gridSize - filtered.length;
@@ -79,9 +81,9 @@ function slideRow(row) {
 function combineRow(row) {
   for (let i = 0; i < gridSize - 1; i++) {
     if (row[i] && row[i + 1] && row[i].value === row[i + 1].value && !row[i].merged && !row[i + 1].merged) {
-      row[i].value *= 2;
+      row[i].value *= 2; // объединяет плитки
       row[i].merged = true;
-      tilesToRemove.push(row[i + 1].id);
+      tilesToRemove.push(row[i + 1].id); // метка плитки для удаления
       row[i + 1] = null;
     }
   }
@@ -110,7 +112,7 @@ function rotateBoard() {
   }
   board = newBoard;
 }
-
+//обработка движений
 function move(direction) {
   let oldBoard = JSON.stringify(board, (key, value) => {
     if (value && value.id !== undefined) {
