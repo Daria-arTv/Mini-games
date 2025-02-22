@@ -1,77 +1,79 @@
-let board = [];
-let currentPlayer = 'X';
-let gameOver = false;
-let boardSize = 3;
-let winLength = 3;
+//Объявление переменных - массив, текущий игрок, окончание игры, размер поля по умолчанию 3на3, кроличество символов в ряд для победы
+let board = []; //массив
+let currentPlayer = 'X'; //текущий игрок
+let gameOver = false; //окончание игры
+let boardSize = 3; // размер поля по умолчанию 3на3
+let winLength = 3; //кроличество символов в ряд для победы
 
+// Создание игрового поля
 const createBoard = () => {
     boardSize = parseInt(document.getElementById('size').value);
-    winLength = boardSize >= 5 ? 5 : 3;
-    board = Array(boardSize).fill().map(() => Array(boardSize).fill(''));
-    gameOver = false;
-    currentPlayer = 'X';
-    renderBoard();
-    updateStatus('Ход игрока X');
+    winLength = boardSize >= 5 ? 5 : 3;  // Если поле 5x5 или больше, то нужно 5 символов в ряд, иначе 3
+    board = Array(boardSize).fill().map(() => Array(boardSize).fill(''));//создание пустого поля
+    gameOver = false; // Сбрас флага окончания игры
+    currentPlayer = 'X';// Первый ход делает X
+    renderBoard();// отображаем поле
+    updateStatus('Ход игрока X');// обновляем статус
 };
-
+ // отображение поля
 const renderBoard = () => {
     const boardElement = document.getElementById('board');
-    boardElement.innerHTML = '';
+    boardElement.innerHTML = '';  // очищаем игровое поле
 
-    boardElement.style.gridTemplateColumns = `repeat(${boardSize}, 50px)`;
+    boardElement.style.gridTemplateColumns = `repeat(${boardSize}, 50px)`; // Устанавливаем размер сетки
 
     for (let row = 0; row < boardSize; row++) {
         for (let col = 0; col < boardSize; col++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.addEventListener('click', () => makeMove(row, col));
+            const cell = document.createElement('div');// создаем ячейку
+            cell.classList.add('cell');//css-класс
+            cell.addEventListener('click', () => makeMove(row, col)); // обрабатываем клик
             if (board[row][col] !== '') {
-                cell.classList.add('taken');
-                cell.textContent = board[row][col];
+                cell.classList.add('taken'); // если клетка занята, добавляем класс
+                cell.textContent = board[row][col]; // Устанавливаем X или O
             }
             boardElement.appendChild(cell);
         }
     }
 };
-
+// ход игрока.
 const makeMove = (row, col) => {
     if (gameOver || board[row][col] !== '') return;
 
-    board[row][col] = currentPlayer;
-    renderBoard();
+    board[row][col] = currentPlayer;  // записываем ход игрока
+    renderBoard(); // обновляем поле
 
-    if (checkWin(row, col)) {
+    if (checkWin(row, col)) {//проверяем победу
         gameOver = true;
         showModal(`Победа! Игрок ${currentPlayer} выиграл!`);
         return;
     }
 
-    if (isDraw()) {
+    if (isDraw()) { //проверяем ничью
         gameOver = true;
         showModal('Ничья!');
         return;
     }
 
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';  // иеняем игрока
     if (currentPlayer === 'O') {
-        botMove();
+        botMove(); // ходит бот
     } else {
         updateStatus('Ход игрока X');
     }
 };
-
+//xод бота.
 const botMove = () => {
     if (gameOver) return;
 
-    let move = findBlockingMove();
+    let move = findBlockingMove(); //можно ли заблокировать игрока
     if (!move) {
-        move = findWinningMove();
+        move = findWinningMove();// может ли бот выиграть сразу
     }
     if (!move) {
-        move = findRandomMove();
+        move = findRandomMove();//случайный ход
     }
 
-    board[move.row][move.col] = 'O';
+    board[move.row][move.col] = 'O';// записываем ход бота
     renderBoard();
 
     if (checkWin(move.row, move.col)) {
@@ -136,7 +138,7 @@ const findRandomMove = () => {
 const checkWin = (row, col) => {
     const player = board[row][col];
 
-    // Проверка в 4 направлениях: горизонталь, вертикаль, диагональ \ и диагональ /
+    // проверка в 4 направлениях: горизонталь, вертикаль, диагональ \ и диагональ /
     return (
         checkDirection(row, col, 0, 1, player) || // горизонталь
         checkDirection(row, col, 1, 0, player) || // вертикаль
@@ -144,7 +146,7 @@ const checkWin = (row, col) => {
         checkDirection(row, col, 1, -1, player)   // диагональ /
     );
 };
-
+ //проверяем выигрыш в 4 направлениях.
 const checkDirection = (row, col, dRow, dCol, player) => {
     let count = 1;
 
@@ -170,7 +172,7 @@ const checkDirection = (row, col, dRow, dCol, player) => {
 
     return count >= winLength;
 };
-
+//проверка ничьей
 const isDraw = () => {
     for (let row = 0; row < boardSize; row++) {
         for (let col = 0; col < boardSize; col++) {
