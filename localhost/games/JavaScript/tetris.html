@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Тетрис</title>
+  <link rel="stylesheet" href="tetris.css">
+</head>
+<body>
+    <header>
+        <h1>Тетрис</h1>
+        <nav>
+          <a href="main.html">Главная</a>
+          <a href="Index.html">Мини-игры</a>
+          <a href="about.html">О нас</a>
+        </nav>
+        <button id="help-button">Как играть</button>
+
+      </header>
+  <div id="game-container">
+    <canvas width="320" height="640" id="game"></canvas>
+    <div id="sidebar">
+      <div id="score-container">Счёт: <span id="score">0</span></div>
+      <div id="next-container">
+        <canvas width="128" height="128" id="next"></canvas>
+        <div>Следующая фигура</div>
+      </div>
+    </div>
+  </div>
+  <div id="game-over-modal">
+    <div class="modal-content">
+      <h2>Game Over!</h2>
+      <p>Ваш счёт: <span id="final-score">0</span></p>
+      <button id="restart-button">Новая игра</button>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <p>2025 Мерси Лада. Все права защищены.</p>
+  </footer>
+  
+  <script src="tetris.js"></script>
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-help-modal" class="close">&times;</span>
+      <h2>Как играть в Тетрис</h2>
+      <p class="rule-paragraph">Игра начинается с падения первой фигуры.</p>
+    <p class="rule-paragraph">Игрок может управлять фигурой с помощью клавиатуры:</p>
+    <p class="rule-paragraph">•	Стрелка влево/вправо – движение фигуры влево/вправо;</p>
+    <p class="rule-paragraph">•	Стрелка вверх – вращать фигуру;</p>
+    <p class="rule-paragraph">•	Стрелка вниз – ускорение падения фигуры.</p>
+    <p class="rule-paragraph">Когда фигура достигает дна или другой фигуры, она фиксируется на месте.</p>
+    <p class="rule-paragraph">Если строка полностью заполнена блоками, она исчезает, и все блоки над ней сдвигаются вниз.</p>
+    <p class="rule-paragraph">Игра завершается, когда новая фигура не может быть размещена из-за заполнения верхнего ряда.</p>
+
+  </div>
+  </div>
+  <script>
+    const helpButton = document.getElementById("help-button");
+    const helpModal = document.getElementById("help-modal");
+    const closeHelpModal = document.getElementById("close-help-modal");
+
+    helpButton.addEventListener("click", () => {
+      helpModal.style.display = "block";
+    });
+
+    // Закрытие модального окна с инструкциями
+    closeHelpModal.addEventListener("click", () => {
+      helpModal.style.display = "none";
+    });
+
+    // Закрытие модального окна при клике вне его контента
+    window.addEventListener("click", (e) => {
+      if (e.target === helpModal) {
+        helpModal.style.display = "none";
+      }
+    });
+  </script>
+  
+</body>
+</html>
