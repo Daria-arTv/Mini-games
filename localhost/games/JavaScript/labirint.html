@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабиринт</title>
+    <link rel="stylesheet" href="labirint.css">
+</head>
+<style>
+    #help-button {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 70%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .rule-paragraph {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+#mazeCanvas {
+    margin-top: 60px;
+}
+</style>
+<body>
+    <header>
+        <h1>Лабиринт</h1>
+        <nav>
+            <a href="main.html">Главная</a>
+            <a href="Index.html">Мини-игры</a>
+            <a href="about.html">О нас</a>
+        </nav>
+        <button id="help-button">Как играть</button>
+
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-help-modal" class="close">&times;</span>
+                <h2>Как играть в Лабиринт</h2>
+                <p class="rule-paragraph">Игрок управляет персонажем, который может двигаться в четырёх направлениях (вверх, вниз, влево, вправо).</p>
+                <p class="rule-paragraph">Персонаж не может проходить сквозь стены.</p>
+                <p class="rule-paragraph">Игра завершается, когда персонаж достигает выхода из лабиринта.</p>
+                <p class="rule-paragraph">Очки начисляются за каждый пройденный уровень.</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <canvas id="mazeCanvas"></canvas>
+        <div id="levelDisplay">Пройдено уровней: <span id="levelCount">0</span></div>
+    </main>
+    <div id="winModal">
+        <p>Поздравляем! Вы прошли уровень.</p>
+        <p>Пройдено уровней: <span id="modalLevelCount">0</span></p>
+        <button onclick="restartGame()">Следующий уровень</button>
+    </div>
+    <footer>
+        <p>&copy; 2025 Мерси Лада. Все права защищены.</p>
+    </footer>
+    <script src="labirint.js"></script>
+    <script>
+        const helpButton = document.getElementById("help-button");
+        const helpModal = document.getElementById("help-modal");
+        const closeHelpModal = document.getElementById("close-help-modal");
+    
+        helpButton.addEventListener("click", () => {
+          helpModal.style.display = "block";
+        });
+    
+        closeHelpModal.addEventListener("click", () => {
+          helpModal.style.display = "none";
+        });
+    
+        window.addEventListener("click", (e) => {
+          if (e.target === helpModal) {
+            helpModal.style.display = "none";
+          }
+        });
+    </script>
+</body>
+</html>
