@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Арканоид</title>
+  <link rel="stylesheet" href="arcanoid.css">
+  <style>
+    canvas {
+        display: block;
+        background: #eee;
+        margin: 20px auto;
+    }
+
+    #topPanel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 20px;
+    }
+
+    #info {
+        display: flex;
+        gap: 20px;
+    }
+
+    #help-button {
+        display: inline-block;
+        width: auto;
+        padding: 12px 20px;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    #help-button:hover {
+        background-color: #555;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        position: relative;
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 70%;
+        max-width: 600px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .rule-paragraph {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    #restartButton {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #restartButton:hover {
+        background-color: #555;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        color: #333;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-header">
+    <h1>Арканоид</h1>
+    <nav>
+      <a href="main.html" class="nav-link">Главная</a>
+      <a href="Index.html" class="nav-link">Мини-игры</a>
+      <a href="contact.html" class="nav-link">Контактная информация</a>
+    </nav>
+  </div>
+
+  <div id="topPanel">
+      <button id="help-button">Как играть</button>
+      <div id="info">
+          <div>Очки: <span id="score">0</span></div>
+          <div>Жизни: <span id="lives">3</span></div>
+      </div>
+  </div>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-help-modal" class="close">&times;</span>
+      <h2>Как играть в Арканоид</h2>
+      <p>Используйте стрелки влево и вправо для управления платформой.</p>
+      <p>Чтобы выпустить шарик с платформы нужно нажать пробел.</p>
+      <p>Отбивайте шарик, уничтожая кирпичи и избегайте потери мяча.</p>
+      <p>Цель игры — разрушить все кирпичи и не потерять все жизни!</p>
+    </div>
+  </div>
+
+
+  <div id="restartButtonWrapper">
+    <button id="restartButton">Перезапуск</button>
+  </div>
+
+  <footer class="main-footer">
+    <p>2025 Мерси Лада. Все права защищены.</p>
+  </footer>
+  <script src="arcanoid.js"></script>
+
+  <script>
+    const helpButton = document.getElementById("help-button");
+    const helpModal = document.getElementById("help-modal");
+    const closeHelpModal = document.getElementById("close-help-modal");
+
+    helpButton.addEventListener("click", () => {
+      helpModal.style.display = "block";
+    });
+
+    closeHelpModal.addEventListener("click", () => {
+      helpModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === helpModal) {
+        helpModal.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
