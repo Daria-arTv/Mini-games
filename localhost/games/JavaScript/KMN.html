@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Камень Ножницы Бумага</title>
+  <link rel="stylesheet" href="KMN.css">
+  <style>
+    #help-button {
+  display: inline-block;
+  align-self: center;
+  width: auto;
+  padding: 12px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      position: relative;
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 70%;
+      max-width: 600px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .rule-paragraph {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <h1>Камень Ножницы Бумага</h1>
+    <nav>
+        <a href="main.html" class="nav-link">Главная</a>
+        <a href="Index.html" class="nav-link">Мини-игры</a>
+        <a href="contact.html" class="nav-link">Контактная информация</a>
+    </nav>
+    <button id="help-button">Как играть</button>
+  </header>
+  
+
+  <div class="game-container">
+    <div id="score">
+      <p>Ваши очки: <span id="playerScore">0</span></p>
+      <p>Очки компьютера: <span id="computerScore">0</span></p>
+    </div>
+    
+    <div class="choices">
+      <button class="choice-btn" id="rock">🗿 Камень</button>
+      <button class="choice-btn" id="scissors">✂️ Ножницы</button>
+      <button class="choice-btn" id="paper">📄 Бумага</button>
+    </div>
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+          <span id="close-help-modal" class="close">&times;</span>
+          <h2>Как играть в камень ножницы бумага.</h2>
+          <p>Игра проходит между двумя участниками: человеком и компьютером.</p>
+          <p>Каждый раунд участники одновременно выбирают один из трех вариантов: камень, ножницы или бумагу.</p>
+          <p>Результат раунда определяется по следующим правилам:</p>
+          <ul>
+            <li>	Камень побеждает ножницы.</li>
+            <li>	Ножницы побеждают бумагу.</li>
+            <li>	Бумага побеждает камень.</li>
+          </ul>
+          
+          <p>Если оба участника выбрали одинаковый вариант, раунд заканчивается вничью.</p>
+        </div>
+      </div>
+    <div id="result">
+      <div class="choice-display">
+        <p>Выбор игрока: <span id="playerChoice">---</span></p>
+        <p>Выбор компьютера: <span id="computerChoice">---</span></p>
+      </div>
+      <p>Результат: <span id="roundResult">---</span></p>
+    </div>
+  </div>
+  <footer class="main-footer">
+    <p>© 2025 Камень Ножницы Бумага</p>
+  </footer>
+  <script>
+    const helpButton = document.getElementById("help-button");
+    const helpModal = document.getElementById("help-modal");
+    const closeHelpModal = document.getElementById("close-help-modal");
+
+    helpButton.addEventListener("click", () => {
+      helpModal.style.display = "block";
+    });
+
+    closeHelpModal.addEventListener("click", () => {
+      helpModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === helpModal) {
+        helpModal.style.display = "none";
+      }
+    });
+  </script>
+  <script src="KMN.js"></script>
+</body>
+</html>
